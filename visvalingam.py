@@ -78,13 +78,18 @@ class VisvalingamSimplification:
 		#it is enough to enrich the line once
 		if(self.enriched == False):
 			self.enrichLineString()
+
+		new_indices = []
 		#build the new line
 		newLine = []
-		for p in self.line:
+		for i,p in enumerate(self.line):
 			if(len(p)>2):
 				if(p[2]>tolerance):
 					newLine.append(p)
+					new_indices.append(i)
 			else:
 				newLine.append(p)
+				new_indices.append(i)
 		#print len(newLine)
+		self.originalIndices = new_indices
 		return newLine
